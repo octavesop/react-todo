@@ -49,7 +49,9 @@ export function TodoProvider({ children }) {
     return (
         <TodoStateContext.Provider value={state}>
             <TodoDispatchContext.Provider value={dispatch}>
-                {children}
+                <TodoNextIdContext.Provider value={nextId}>
+                    {children}
+                </TodoNextIdContext.Provider>
             </TodoDispatchContext.Provider>
         </TodoStateContext.Provider>
     );
@@ -78,3 +80,4 @@ export function useTodoNextId() {
     }
     return useContext(TodoNextIdContext);
 }
+
