@@ -26,12 +26,22 @@ const TodoHeaderBlock = styled.div`
 
 function TodoHeader() {
     const todos = useTodoState();
-    console.log(todos);
+    const undoneTasks = todos.filter(todo => !todo.done);
+    
+    const today = new Date();
+    const dateString = today.toLocaleDateString('ko-KR', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    });
+
+    const dayName = today.toLocaleDateString('ko-KR', {weekday: 'long'});
+
     return (
     <TodoHeaderBlock>
-        <h1>2021년 11월 18일</h1>
-        <div className="day">목요일</div>
-        <div className="work">남은 일은 2개입니다.</div>
+        <h1>{dateString}</h1>
+        <div className="day">{dayName}</div>
+        <div className="work">남은 일은 {undoneTasks.length}개입니다.</div>
     </TodoHeaderBlock>
     );
 }
